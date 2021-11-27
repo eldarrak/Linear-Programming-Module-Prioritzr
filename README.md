@@ -57,7 +57,7 @@ This is were linear programming in a statistical software comes in, by defining 
 
 <div align="center">
   <a href="https://github.com/CageCode/Linear-Programming-Module-Prioritzr">
-    <img src="Images/Protected_areas_Madagascar.PNG" alt="Logo" width="600" height="480">
+    <img src="images/Protected_areas_Madagascar.PNG" alt="Logo" width="600" height="480">
   </a>
 </div>
 
