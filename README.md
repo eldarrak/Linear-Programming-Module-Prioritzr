@@ -56,9 +56,7 @@ One of the fields were linear programming problems occur is in the field of cons
 This is were linear programming in a statistical software comes in, by defining the objectives and constraints, a solution can be found using R. In this module we will look at spatial linear programming problems and solve those using a package specifically designed for conservation planning problems named: **PrioritizR**. Before we can start, we first need to install the **PrioritizR** package in R and also a software package called **Gurobi** that applies algorithms to efficiently solve the linear programming problems at hand.
 
 <div align="center">
-  <a href="https://github.com/CageCode/Linear-Programming-Module-Prioritzr">
     <img src="images/Protected_areas_Madagascar.PNG" alt="Logo" width="600" height="480">
-  </a>
 </div>
 
 
