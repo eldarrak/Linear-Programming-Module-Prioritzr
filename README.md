@@ -99,15 +99,30 @@ This section should list any major frameworks/libraries used to bootstrap your p
 <!-- GETTING STARTED -->
 ## Getting Started
 
-This is an example of how you may give instructions on setting up your project locally.
-To get a local copy up and running follow these simple example steps.
+The latest official version of the prioritizr R package can be installed from the Comprehensive R Archive Network (CRAN) using the following R code. Copy the code and run it in Rstudio, make sure your R version is 4.+ (you probably already checked this previous week).
 
 ```R
 # Install the prioritizr package
 install.packages("prioritizr", repos = "https://cran.rstudio.com/")
 ```
 
-### Prerequisites
+### Gurobi
+
+Next, we will need to install a so-called solver, which is software that uses algorithms to solve linear programming problems quickly. Gurobi (https://www.gurobi.com/) is an example of such type of software, which we are going to install and use in this module. Gurobi is not open-source software, but academic users may register for a one-year free trial. In short, we will perform the following steps to install this software:
+
+* Register for a free academic trial
+* Change your password with the email you receive
+* Login to the Gurobi website
+* Download the software: (https://www.gurobi.com/downloads/gurobi-software/)
+* Go to (https://www.gurobi.com/downloads/free-academic-license/) and find your key under Installation
+* Open command prompt (Windows users can use the search function on laptop) and type: grbgetkey [your-key] where your-key is the key you found in the previous step
+* If all previous steps are completed, you succesfully installed the Gurobi software
+
+If you are not able to succesfully install the software, then a more elaborate installation guide can be found here:
+# (https://prioritizr.net/articles/gurobi_installation.html)
+
+
+
 
 This is an example of how to list things you need to use the software and how to install them.
 * npm
