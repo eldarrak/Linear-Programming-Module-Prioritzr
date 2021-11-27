@@ -1,4 +1,3 @@
-# Linear Programming Module Prioritzr
 
 <div id="top"></div>
 
