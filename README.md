@@ -10,10 +10,10 @@
     <img src="images/LP_in_R.jpg" alt="Logo" width="600" height="480">
   </a>
 
-  <h3 align="center">Linear Programming in R</h3>
+  <h3 align="center">Linear Programming in R using PrioritizR package and examples</h3>
 
   <p align="center">
-    Using the PrioritizR package and examples
+    By: Daniel Kooij
   </p>
 </div>
 
@@ -48,9 +48,14 @@
 
 
 <!-- ABOUT THE PROJECT -->
-## About The Project
+## Why linear programming in R?
 
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
+Earlier this week you have learned what linear programming is all about. You have seen examples of some problems where an optimal solution can be found (INSERT EXAMPLE WHAT THEY DID). Finding the solution to a linear programming problem with limited amount of dimensions and constraints can be done even by hand (as you have seen this week??). However, when the number of dimensions and constraints keep increasing it becomes almost impossible to calculate the optimal solution(s). Moreover, the problem might even exceed the amount of computing power that is reasonably available to calculate all possible solutions to the problem. In that case, we need some sort of algorithm to scan the problem space in order to find an optimal solution. This is why we will use R in this module, to make use of algorithms that can solve linear programming problems for us. 
+One of the fields were linear programming problems occur is in the field of conservation ecology. Imagine you are tasked by indicating which areas of a forest should be protected in order to preserve the maximum amount of biodiversity in this park. You open your prefered GIS software and import different kinds of maps to base your decision on. The imported maps show the occurence and observations of tens of different type of species, the spatial availability of various nutrients, soil maps, hydrological maps, land covers, and so forth... Where do you even start to determine the areas that are most important to preserve?
+This is were linear programming in a statistical software comes in, by defining the objectives and constraints, a solution can be found using R. In this module we will look at spatial linear programming problems and solve those using a package specifically designed for conservation planning problems named: **PrioritizR**. Before we can start, we first need to install the **PrioritizR** package in R and also a software package called **Gurobi** that applies algorithms to efficiently solve the linear programming problems at hand.
+
+
+
 
 There are many great README templates available on GitHub; however, I didn't find one that really suited my needs so I created this enhanced one. I want to create a README template so amazing that it'll be the last one you ever need -- I think this is it.
 
