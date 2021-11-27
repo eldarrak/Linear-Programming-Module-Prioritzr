@@ -13,7 +13,7 @@
   <h3 align="center">Linear Programming in R using PrioritizR package and examples</h3>
 
   <p align="center">
-    By: Daniel Kooij
+    By: Daniël Kooij
   </p>
 </div>
 
@@ -24,7 +24,7 @@
   <summary>Table of Contents</summary>
   <ol>
     <li>
-      <a href="#about-the-project">About The Project</a>
+      <a href="#LP in R">Why linear programming in R?</a>
       <ul>
         <li><a href="#built-with">Built With</a></li>
       </ul>
@@ -47,7 +47,7 @@
 
 
 
-<!-- ABOUT THE PROJECT -->
+<!-- LP in R -->
 ## Why linear programming in R?
 
 Earlier this week you have learned what linear programming is all about. You have seen examples of some problems where an optimal solution can be found (INSERT EXAMPLE WHAT THEY DID). Finding the solution to a linear programming problem with limited amount of dimensions and constraints can be done even by hand (as you have seen this week??). However, when the number of dimensions and constraints keep increasing it becomes almost impossible to calculate the optimal solution(s). Moreover, the problem might even exceed the amount of computing power that is reasonably available to calculate all possible solutions to the problem. In that case, we need some sort of algorithm to scan the problem space in order to find an optimal solution. This is why we will use R in this module, to make use of algorithms that can solve linear programming problems for us. 
