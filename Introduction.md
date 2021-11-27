@@ -65,7 +65,6 @@ The latest official version of the prioritizr R package can be installed from th
 # Install the prioritizr package
 install.packages("prioritizr", repos = "https://cran.rstudio.com/")
 ```
-<br />
 
 ### Gurobi
 
