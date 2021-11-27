@@ -119,7 +119,7 @@ Next, we will need to install a so-called solver, which is software that uses al
 * If all previous steps are completed, you succesfully installed the Gurobi software
 
 If you are not able to succesfully install the software, then a more elaborate installation guide can be found here:
-# (https://prioritizr.net/articles/gurobi_installation.html)
+* (https://prioritizr.net/articles/gurobi_installation.html)
 
 
 
