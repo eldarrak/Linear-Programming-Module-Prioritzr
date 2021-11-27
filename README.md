@@ -7,22 +7,13 @@
 <br />
 <div align="center">
   <a href="https://github.com/CageCode/Linear-Programming-Module-Prioritzr">
-    <img src="images/LP_in_R.jpg" alt="Logo" width="400" height="320">
+    <img src="images/LP_in_R.jpg" alt="Logo" width="600" height="480">
   </a>
 
-  <h3 align="center">Best-README-Template</h3>
+  <h3 align="center">Linear Programming in R</h3>
 
   <p align="center">
-    An awesome README template to jumpstart your projects!
-    <br />
-    <a href="https://github.com/othneildrew/Best-README-Template"><strong>Explore the docs »</strong></a>
-    <br />
-    <br />
-    <a href="https://github.com/othneildrew/Best-README-Template">View Demo</a>
-    ·
-    <a href="https://github.com/othneildrew/Best-README-Template/issues">Report Bug</a>
-    ·
-    <a href="https://github.com/othneildrew/Best-README-Template/issues">Request Feature</a>
+    Using the PrioritizR package and examples
   </p>
 </div>
 
