@@ -65,6 +65,7 @@ The latest official version of the prioritizr R package can be installed from th
 # Install the prioritizr package
 install.packages("prioritizr", repos = "https://cran.rstudio.com/")
 ```
+<br />
 
 ### Gurobi
 
@@ -81,6 +82,7 @@ Next, we will need to install a so-called solver, which is software that uses al
 If you are not able to succesfully install the software, then a more elaborate installation guide can be found here:
 * (https://prioritizr.net/articles/gurobi_installation.html)
 
+<br />
 
 ### Installation
 
