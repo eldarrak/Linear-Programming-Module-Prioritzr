@@ -64,37 +64,6 @@ This is were linear programming in a statistical software comes in: By defining 
 
 <br />
 
-There are many great README templates available on GitHub; however, I didn't find one that really suited my needs so I created this enhanced one. I want to create a README template so amazing that it'll be the last one you ever need -- I think this is it.
-
-Here's why:
-* Your time should be focused on creating something amazing. A project that solves a problem and helps others
-* You shouldn't be doing the same tasks over and over like creating a README from scratch
-* You should implement DRY principles to the rest of your life :smile:
-
-Of course, no one template will serve all projects since your needs may be different. So I'll be adding more in the near future. You may also suggest changes by forking this repo and creating a pull request or opening an issue. Thanks to all the people have contributed to expanding this template!
-
-Use the `BLANK_README.md` to get started.
-
-<p align="right">(<a href="#top">back to top</a>)</p>
-
-
-
-### Built With
-
-This section should list any major frameworks/libraries used to bootstrap your project. Leave any add-ons/plugins for the acknowledgements section. Here are a few examples.
-
-* [Next.js](https://nextjs.org/)
-* [React.js](https://reactjs.org/)
-* [Vue.js](https://vuejs.org/)
-* [Angular](https://angular.io/)
-* [Svelte](https://svelte.dev/)
-* [Laravel](https://laravel.com)
-* [Bootstrap](https://getbootstrap.com)
-* [JQuery](https://jquery.com)
-
-<p align="right">(<a href="#top">back to top</a>)</p>
-
-
 
 <!-- GETTING STARTED -->
 ## Getting Started
@@ -108,37 +77,53 @@ install.packages("prioritizr", repos = "https://cran.rstudio.com/")
 
 ### Gurobi
 
-Next, we will need to install a so-called solver, which is software that uses algorithms to solve linear programming problems quickly. Gurobi (https://www.gurobi.com/) is an example of such type of software, which we are going to install and use in this module. Gurobi is not open-source software, but academic users may register for a one-year free trial. In short, we will perform the following steps to install this software:
+Next, we will need to install a so-called solver, which is software that uses algorithms to solve linear programming problems quickly. [Gurobi](https://www.gurobi.com/) is an example of such type of software, which we are going to install and use in this module. Gurobi is not open-source software, but academic users may register for a one-year free trial. In short, we will perform the following steps to install this software:
 
-* Register for a free academic trial
-* Change your password with the email you receive
-* Login to the Gurobi website
+* Register for a free academic trial [Here](https://pages.gurobi.com/registration).
+* Change your password with the email you receive.
+* Login to the Gurobi website.
 * Download the software: (https://www.gurobi.com/downloads/gurobi-software/)
-* Go to (https://www.gurobi.com/downloads/free-academic-license/) and find your key under Installation
-* Open command prompt (Windows users can use the search function on laptop) and type: grbgetkey [your-key] where your-key is the key you found in the previous step
-* If all previous steps are completed, you succesfully installed the Gurobi software
+* Go to (https://www.gurobi.com/downloads/free-academic-license/) and find your key under Installation.
+* Open command prompt (Windows users can use the search function on laptop) and type: grbgetkey [your-key], where your-key is the key you found in the previous step.
+* If all previous steps are completed, you succesfully installed the Gurobi software.
 
 If you are not able to succesfully install the software, then a more elaborate installation guide can be found here:
 * (https://prioritizr.net/articles/gurobi_installation.html)
 
 
-
-
-This is an example of how to list things you need to use the software and how to install them.
-* npm
-  ```sh
-  npm install npm@latest -g
-  ```
-
 ### Installation
+
+Once the software is installed on your laptop, the Gurobi package can be installed in Rstudio. Use the following code to install the latest version of the Gurobi software which is 9.5.0. to this date (**19/11/21**). You are probably prompted to also install dependencies like the package _slam_ in order to make the Gurobi package work, also install this package with the provided code.
+
+
+```R
+# Install Gurobi950
+install.packages("c:/gurobi950/win64/R/gurobi_9.5-0.zip", repos = NULL)
+
+# Install additionals
+install.packages("slam", repos = "https://cloud.r-project.org")
+```
+
+If the packages are installed correctly, you can continue, if not; ask the teacher for assistance. 
+
+
+<p align="center">(<a href="#top">back to top</a>)</p>
+
+
+
+
+
+
+
+
+
+
+
+
 
 _Below is an example of how you can instruct your audience on installing and setting up your app. This template doesn't rely on any external dependencies or services._
 
-1. Get a free API Key at [https://example.com](https://example.com)
-2. Clone the repo
-   ```sh
-   git clone https://github.com/your_username_/Project-Name.git
-   ```
+
 3. Install NPM packages
    ```sh
    npm install
