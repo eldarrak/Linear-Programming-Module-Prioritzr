@@ -55,8 +55,10 @@ Earlier this week you have learned what linear programming is all about. You hav
 One of the fields were linear programming problems occur is in the field of conservation ecology. Imagine you are tasked by indicating which areas of a forest should be protected in order to preserve the maximum amount of biodiversity in this park. You open your prefered GIS software and import different kinds of maps to base your decision on. The imported maps show the occurence and observations of tens of different type of species, the spatial availability of various nutrients, soil maps, hydrological maps, land covers, and so forth... Where do you even start to determine the areas that are most important to preserve?
 This is were linear programming in a statistical software comes in, by defining the objectives and constraints, a solution can be found using R. In this module we will look at spatial linear programming problems and solve those using a package specifically designed for conservation planning problems named: **PrioritizR**. Before we can start, we first need to install the **PrioritizR** package in R and also a software package called **Gurobi** that applies algorithms to efficiently solve the linear programming problems at hand.
 
+<br />
 <div align="center">
   <img src="images/Protected_areas_Madagascar.PNG" alt="Logo" width="600" height="480">
+  <br />
   <em>Typical conservation planning problem, where protected areas are indicated in pink</em>
 </div>
 
