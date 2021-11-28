@@ -79,7 +79,7 @@ Next, we will need to install a so-called solver, which is software that uses al
 * Login to the Gurobi website.
 * Download the software: (https://www.gurobi.com/downloads/gurobi-software/)
 * Go to (https://www.gurobi.com/downloads/free-academic-license/) and find your key under Installation.
-* Open command prompt (Windows users can use the search function on laptop) and type: grbgetkey [your-key], where your-key is the key you found in the previous step.
+* Open command prompt (Windows users can use the search function on laptop) and type: _grbgetkey [your-key]_, where your-key is the key you found in the previous step.
 * If all previous steps are completed, you succesfully installed the Gurobi software.
 
 If you are not able to succesfully install the software, then a more elaborate installation guide can be found here:
