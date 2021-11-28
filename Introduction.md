@@ -54,7 +54,7 @@ Sounds like quite the package! Let's see how it works and what we can do with it
 <div align="center">
   <img src="images/Protected_areas_Madagascar.PNG" alt="Logo" width="600" height="480">
   <br />
-  <em>Typical conservation planning problem, where protected areas are indicated in pink</em>
+  <em>Fig 1. Typical conservation planning problem, where protected areas are indicated in pink</em>
 </div>
 
 <br />
