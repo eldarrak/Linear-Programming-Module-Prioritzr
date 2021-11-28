@@ -103,5 +103,5 @@ install.packages("slam", repos = "https://cloud.r-project.org")
 If the packages are installed correctly, you can continue, if not; ask the teacher for assistance. 
 
 
-<p align="center">(<a href="#top">back to top</a>)</p>
+<p align="center">(<a href="https://github.com/CageCode/Linear-Programming-Module-Prioritzr">back to overview</a>)</p>
 
