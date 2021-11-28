@@ -5,7 +5,7 @@
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-  <img src="images/logo_prioritizr.png" alt="Logo" width="600" height="480">
+  <img src="images/logo_prioritizr.png" alt="Logo" width="300" height="300">
   </a>
 
   <h3 align="center">Using the PrioritizR Package</h3>
@@ -48,7 +48,7 @@
 <!-- PPP -->
 ## Preparing your first PriotizR Project
 
-
+- Explain input features and data
 
 ```R
 # load packages
