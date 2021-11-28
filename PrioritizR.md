@@ -5,7 +5,7 @@
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-  <img src="images/logo_prioritizr.png" alt="Logo" width="240" height="300">
+  <img src="images/logo_prioritizr.png" alt="Logo" width="270" height="300">
   </a>
 
   <h3 align="center">Using the PrioritizR Package</h3>
@@ -51,7 +51,7 @@
 In this section, we are going to explore step by step how linear programming (LP) can be implemented on a spatial scale. For this purpose, we will imagine the aforementioned task; indicating which areas of a forest should be protected in order to preserve .....the maximum amount of biodiversity? Suppose the forest in question is a perfect square of 10 by 10 kilometers, divided into grid cells of 1 km<sup>2</sup>. Each grid cell of forest may attain the _preserved_ status, but there can only be a limited amount of grid cells that can be preserved due to some constraint(s).
 
 ```
-Question 1. What might be a limiting factor for preservation? I.e. What could be a reason that we cannot preserve the whole forest?
+> Question 1. What might be a limiting factor for preservation? I.e. What could be a reason that we cannot preserve the whole forest?
 ```
 
 Answer 1. There can be many limiting factors. Often there is money involved and the conservation costs are too high. However, there may be other reasons, such as: The entire forest cannot be managed and patrolled, or preservation could mean the preserved area would be fenced off and the government decided that at least _X_% of the forest should be remain open to the public. 
