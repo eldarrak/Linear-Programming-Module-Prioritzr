@@ -51,6 +51,7 @@
 In this section, we are going to explore step by step how linear programming (LP) can be implemented on a spatial scale. For this purpose, we will imagine the aforementioned task; indicating which areas of a forest should be protected in order to preserve .....the maximum amount of biodiversity? Suppose the forest in question is a perfect square of 10 by 10 kilometers, divided into grid cells of 1 km<sup>2</sup>. Each grid cell of forest may attain the _preserved_ status, but there can only be a limited amount of grid cells that can be preserved due to some constraint(s).
 
 <br />
+
 > Question 1. What might be a limiting factor for preservation? I.e. What could be a reason that we cannot preserve the whole forest?
 
 <br />
@@ -60,8 +61,9 @@ There can be many limiting factors. Often there is money involved and the conser
 </details>
 
 <br />
+
 > Question 2. What kind of data (variables) would you like to know about each grid cell of forest to determine if it should be preserved or not? Name three different types of variables.
-> 
+
 <br />
 <details>
 <summary>Answer 2.</summary>
