@@ -99,7 +99,7 @@ spplot(sim_pu_polygons, "cost", main = "Purchase costs per km2 multiplied by €
        xlim = c(-0.1, 1.1), ylim = c(-0.1, 1.1))
 ```
 
-<br>
+<br />
 
 This will have plotted the purchase costs visually using a gradient in the bottomright corner of Rstudio. The yellow areas are of high costs, while the blue areas are relatively cheaper (figure 2). The white grid cells cannot be bought, these could for instance consist of waterbodies that are not part of the forest and our management practices and are therefore not able to be preserved.
 
@@ -112,12 +112,15 @@ This will have plotted the purchase costs visually using a gradient in the botto
 </div>
 
 <br />
+
 It is also possible to access the data directly instead of visually inspecting the costs. First save the data of the polygons in a new variable using the code underneath, then use your existing knowledge about R to answer the following question.
 
 ```R
 # Save the polygon data in an easily accessable variable
 forest_cost <- sim_pu_polygons@data
 ```
+
+<br />
 
 > Question 3. What is the costs of the most expensive km<sup>2</sup> of forest? Mind the unit of measurement!
 
@@ -127,19 +130,20 @@ forest_cost <- sim_pu_polygons@data
 Using the function summary(forest_cost) for example, one can find that the maximum cost is €215900.
 </details>
 
-<br>
+<br />
+
 As you can see in the new _forest cost_ variable, there are also two other columns in the data; _locked_in_ and _locked_out_. The locked_in column describes whether a grid cell is already being protected or not. The locked_out column details whether a grid cell can be preserved at all, maybe there is a train track crossing the forest, which makes it impossible to protect the grid cells within which it lies. Now visualize the locked_in data similarly as how you visualized the purchase costs earlier, copy the code and change the necessary parts accordingly.
 
 > Question 4. How many grid cells area already preserved?
 
-<br>
+<br />
 <details>
 <summary>Answer Q4.</summary>
-If you count the colored cells in the visualized "locked-in" variable, one can find that the answer is ....
+If you count the colored cells in the visualized "locked-in" variable, one can find that the answer is 10.
 </details>
 
-<br>
-<br>
+<br />
+<br />
 
 * Feature data
 Conservation features are represented using a stack of raster data (i.e. RasterStack objects). A RasterStack represents a collection of RasterLayers with the same spatial properties (i.e. spatial extent, coordinate system, dimensionality, and resolution). Each RasterLayer in the stack describes the distribution of a conservation feature.
