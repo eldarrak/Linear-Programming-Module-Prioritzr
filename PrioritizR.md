@@ -92,7 +92,6 @@ data(sim_pu_polygons)
 <br />
 
 The data we just loaded will (hopefully) appear in the environment tab in the topright corner of your screen called _sim_pu_polygons_. This R object contains data about three variables for every single grid cell. The first variable is the cost to purchase each grid cell, which we going to check out now. This data is presented as polygons in a so called spatial vector format. For now that does not seem to make much difference as we will see a perfectly square forest with equally sized grid cells. However, this will come in handy when working with real data, as our world is often divided into areas that follow natural or man-made boundaries. By using this spatial vector format, it is possible to define polygons precisely matching the area in question, which we will see later on when we apply this to a case study. The function _spplot_ is able to visualize these polygons, now visualize the purchase costs per grid cell using the following code:
-<br>
 
 ```R
 # Show the purchase costs per km2
@@ -100,7 +99,6 @@ spplot(sim_pu_polygons, "cost", main = "Purchase costs per km2 multiplied by €
        xlim = c(-0.1, 1.1), ylim = c(-0.1, 1.1))
 ```
 
-<br>
 This will have plotted the purchase costs visually using a gradient in the bottomright corner of Rstudio. The yellow areas are of high costs, while the blue areas are relatively cheaper (figure 2). The white grid cells cannot be bought, these could for instance consist of waterbodies that are not part of the forest and our management practices and are therefore not able to be preserved.
 
 <br />
