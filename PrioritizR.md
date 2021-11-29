@@ -82,6 +82,8 @@ library(gurobi)
 
 <br />
 
+### Inspecting the data
+
 The data for our forest in question is divided into two parts; on the one hand we have the constraint(s) and data about whether a grid cell can be preserved or not. On the other hand we have different variables of interest that we can use to indicate which grid cells would be optimal to preserve in order to satisfy our objective to the fullest. In this case, the constraint is a matter of money, whereas we have a limited amount of cash available to preserve this forest and each grid cell costs a certain amount of money to be preserved. As you can imagine, the costs of preservation varies across the grid. This might be due to land costs; the forest is partly owned by foresters that should be bought out or compensated. Or this might be due to accessibility; some areas are harder to reach and the costs are higher to implement necessary magament practices. Let's assume the former scenario where land must be purchased and the costs are in thousands of euros per km<sup>2</sup>. With this in mind, we are going to take a look at the forest, but first we have to load the data:
 
 ```R
@@ -105,12 +107,14 @@ This will have plotted the purchase costs visually using a gradient in the botto
 
 <br />
 <br />
+
 <div align="center">
   <img src="images/purchase_cost_forest.PNG" alt="Purchasing costs" width="550" height="550">
   <br />
   <em>Figure 2. Overview of the purchasing costs of each square kilometer of forest</em>
 </div>
 
+<br />
 <br />
 
 It is also possible to access the data directly instead of visually inspecting the costs. First save the data of the polygons in a new variable using the code underneath, then use your existing knowledge about R to answer the following question.
@@ -134,7 +138,9 @@ Using the function summary(forest_cost) for example, one can find that the maxim
 
 As you can see in the new _forest cost_ variable, there are also two other columns in the data; _locked_in_ and _locked_out_. The locked_in column describes whether a grid cell is already being protected or not. The locked_out column details whether a grid cell can be preserved at all, maybe there is a train track crossing the forest, which makes it impossible to protect the grid cells within which it lies. Now visualize the locked_in data similarly as how you visualized the purchase costs earlier, copy the code and change the necessary parts accordingly.
 
-> Question 4. How many grid cells area already preserved?
+<br />
+
+> Question 4. How many grid cells are already preserved?
 
 <br />
 <details>
@@ -145,7 +151,8 @@ If you count the colored cells in the visualized "locked-in" variable, one can f
 <br />
 <br />
 
-* Feature data
+### Feature data - work in progress
+
 Conservation features are represented using a stack of raster data (i.e. RasterStack objects). A RasterStack represents a collection of RasterLayers with the same spatial properties (i.e. spatial extent, coordinate system, dimensionality, and resolution). Each RasterLayer in the stack describes the distribution of a conservation feature.
 
 In our example, the sim_features object is a RasterStack object that contains 5 layers. Each RasterLayer describes the distribution of a species. Specifically, the pixel values denote the proportion of suitable habitat across different areas inside the study area. For a given layer, pixels with a value of one are comprised entirely of suitable habitat for the feature, and pixels with a value of zero contain no suitable habitat.
@@ -158,12 +165,14 @@ data(sim_features)
 plot(sim_features, main = paste("Feature", seq_len(nlayers(sim_features))),
      nr = 2)
 ```
-     
+
+<br />
+
 > Question 5. Upon visual inspection of the plots, which part of the forest would you not opt to preserve?
-> a) The northeastern part
-> b) The northwestern part
-> c) The southeastern part
-> d) The southwestern part
+a) The northeastern part
+b) The northwestern part
+c) The southeastern part
+d) The southwestern part
 
 > Question 6. Why this area?
 > a) This area has the highest costs.
@@ -171,64 +180,36 @@ plot(sim_features, main = paste("Feature", seq_len(nlayers(sim_features))),
 > c) Both _a_ and _b_ are correct.
 
 
+<!-- Problem -->
+## Defining the problem
 
-
-
-
-
-In addition, 
-
-There is a certain amount of costs to preserve each grid cell. 
-
-To start with the 
-
-stored in the package 
-Our forest in question 
-
-
-We will use the sim_pu_polygons object to represent our planning units. Although the prioritizr R can support many different types of planning unit data, here our planning units are represented as polygons in a spatial vector format (i.e. SpatialPolygonsDataFrame). Each polygon represents a different planning unit and we have 90 planning units in total. The attribute table associated with this dataset contains information describing the acquisition cost of each planning (“cost” column), and a value indicating if the unit is already located in protected area (“locked_in” column). Let’s explore the planning unit data.
-
-
-Earlier this week you have learned what linear programming is all about. You have seen examples of some problems where an optimal solution can be found (INSERT EXAMPLE WHAT THEY DID). Finding the solution to a linear programming problem with limited amount of dimensions and constraints can be done even by hand (as you have seen this week??). However, when the number of dimensions and constraints keep increasing it becomes almost impossible to calculate the optimal solution(s). Moreover, the problem might even exceed the amount of computing power that is reasonably available to calculate all possible solutions to the problem. In that case, we need some sort of algorithm to scan the problem space in order to find an optimal solution. This is why we will use R in this module, to make use of algorithms that can solve linear programming problems for us. 
-
-One of the fields were linear programming problems occur is in the field of conservation ecology. Imagine you are tasked by indicating which areas of a forest should be protected in order to preserve the maximum amount of biodiversity in this park. You open your prefered GIS software and import different kinds of maps to base your decision on. The imported maps show the occurence and observations of tens of different type of species, the spatial availability of various nutrients, soil maps, hydrological maps, land covers, and so forth... Where do you even start to determine the areas that are most important to preserve?
-This is were linear programming in a statistical software comes in: By defining the objectives and constraints, a solution can be found using R. In this module we will look at spatial linear programming problems and solve those using a package specifically designed for conservation planning problems named: **PrioritizR**. Before we can start, we first need to install the **PrioritizR** package in R and also a software package called **Gurobi** that applies algorithms to efficiently solve the linear programming problems at hand.
-
-<br />
-<div align="center">
-  <img src="images/Protected_areas_Madagascar.PNG" alt="Logo" width="600" height="480">
-  <br />
-  <em>Typical conservation planning problem, where protected areas are indicated in pink</em>
-</div>
-
-<br />
-
-
-<!-- GETTING STARTED -->
-## Getting Started
-
-The latest official version of the prioritizr R package can be installed from the Comprehensive R Archive Network (CRAN) using the following R code. Copy the code and run it in Rstudio, make sure your R version is 4.+ (you probably already checked this previous week).
+Let’s say that we want to develop a reserve network that will secure 15% of the distribution for each feature in the study area for minimal cost. In this planning scenario, we can either purchase all of the land inside a given planning unit, or none of the land inside a given planning unit. Thus we will create a new problem that will use a minimum set objective (add_min_set_objective), with relative targets of 15% (add_relative_targets), binary decisions (add_binary_decisions), and specify that we want to want optimal solutions from the best solver installed on our system (add_default_solver).
 
 ```R
-# Install the prioritizr package
-install.packages("prioritizr", repos = "https://cran.rstudio.com/")
+# create problem
+p1 <- problem(sim_pu_polygons, features = sim_features,
+              cost_column = "cost") %>%
+      add_min_set_objective() %>%
+      add_relative_targets(0.15) %>%
+      add_binary_decisions() %>%
+      add_default_solver(gap = 0)
 ```
 
-### Gurobi
+<br />
+<br />
 
-Next, we will need to install a so-called solver, which is software that uses algorithms to solve linear programming problems quickly. [Gurobi](https://www.gurobi.com/) is an example of such type of software, which we are going to install and use in this module. Gurobi is not open-source software, but academic users may register for a one-year free trial. In short, we will perform the following steps to install this software:
+<div align="center">
+  <img src="images/purchase_cost_forest.PNG" alt="Purchasing costs" width="550" height="550">
+  <br />
+  <em>Figure 2. Overview of the purchasing costs of each square kilometer of forest</em>
+</div>
 
-* Register for a free academic trial [Here](https://pages.gurobi.com/registration).
-* Change your password with the email you receive.
-* Login to the Gurobi website.
-* Download the software: (https://www.gurobi.com/downloads/gurobi-software/)
-* Go to (https://www.gurobi.com/downloads/free-academic-license/) and find your key under Installation.
-* Open command prompt (Windows users can use the search function on laptop) and type: grbgetkey [your-key], where your-key is the key you found in the previous step.
-* If all previous steps are completed, you succesfully installed the Gurobi software.
+<!-- Cons Pros -->
+## Constraints & Objectives
 
-If you are not able to succesfully install the software, then a more elaborate installation guide can be found here:
-* (https://prioritizr.net/articles/gurobi_installation.html)
+This solution is an improvement over the previous solution. However, it is also highly fragmented. As a consequence, this solution may be associated with increased management costs and the species in this scenario may not benefit substantially from this solution due to edge effects. We can further modify the problem by adding penalties that punish overly fragmented solutions (add_boundary_penalties). Here we will use a penalty factor of 300 (i.e. boundary length modifier; BLM), and an edge factor of 50% so that planning units that occur outer edge of the study area are not overly penalized.
 
+This solution is even better then the previous solution. However, we are not finished yet. This solution does not maintain connectivity between reserves, and so species may have limited capacity to disperse throughout the solution. To avoid this, we can add contiguity constraints (add_contiguity_constraints).
 
 ### Installation
 
