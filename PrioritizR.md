@@ -169,17 +169,33 @@ plot(sim_features, main = paste("Feature", seq_len(nlayers(sim_features))),
 <br />
 
 > Question 5. Upon visual inspection of the plots, which part of the forest would you not opt to preserve?
+> <br />
+> a) The northeastern part <br />
+> b) The northwestern part <br />
+> c) The southeastern part <br />
+> d) The southwestern part <br />
 
-`a) The northeastern part` <br />
-`b) The northwestern part` <br />
-`c) The southeastern part` <br />
-`d) The southwestern part` <br />
+<br />
+<details>
+<summary>Answer Q2.</summary>
+Answer A. The northwestern part is inefficient to preserve.
+</details>
+
+<br />
 
 > Question 6. Why this area? <br />
+> <br />
 > a) This area has the highest costs. <br />
 > b) This area is most unsuitable to preserve. <br />
 > c) Both _a_ and _b_ are correct. <br />
 
+<br />
+<details>
+<summary>Answer Q2.</summary>
+Answer C. The area has the highest cost (the maximum amount of €215900) and also three of the features are highly unsuitable.
+</details>
+
+<br />
 
 <!-- Problem -->
 ## Defining the problem
