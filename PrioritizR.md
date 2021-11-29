@@ -177,7 +177,7 @@ plot(sim_features, main = paste("Feature", seq_len(nlayers(sim_features))),
 
 <br />
 <details>
-<summary>Answer Q2.</summary>
+<summary>Answer Q5.</summary>
 Answer A. The northwestern part is inefficient to preserve.
 </details>
 
@@ -191,7 +191,7 @@ Answer A. The northwestern part is inefficient to preserve.
 
 <br />
 <details>
-<summary>Answer Q2.</summary>
+<summary>Answer Q6.</summary>
 Answer C. The area has the highest cost (the maximum amount of €215900) and also three of the features are highly unsuitable.
 </details>
 
