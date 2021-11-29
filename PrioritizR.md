@@ -99,6 +99,8 @@ spplot(sim_pu_polygons, "cost", main = "Purchase costs per km2 multiplied by €
        xlim = c(-0.1, 1.1), ylim = c(-0.1, 1.1))
 ```
 
+<br>
+
 This will have plotted the purchase costs visually using a gradient in the bottomright corner of Rstudio. The yellow areas are of high costs, while the blue areas are relatively cheaper (figure 2). The white grid cells cannot be bought, these could for instance consist of waterbodies that are not part of the forest and our management practices and are therefore not able to be preserved.
 
 <br />
