@@ -170,15 +170,15 @@ plot(sim_features, main = paste("Feature", seq_len(nlayers(sim_features))),
 
 > Question 5. Upon visual inspection of the plots, which part of the forest would you not opt to preserve?
 
-`a) The northeastern part`
-`b) The northwestern part`
-`c) The southeastern part`
-`d) The southwestern part`
+`a) The northeastern part` <br />
+`b) The northwestern part` <br />
+`c) The southeastern part` <br />
+`d) The southwestern part` <br />
 
-> Question 6. Why this area?
-> a) This area has the highest costs.
-> b) This area is most unsuitable to preserve. 
-> c) Both _a_ and _b_ are correct.
+> Question 6. Why this area? <br />
+> a) This area has the highest costs. <br />
+> b) This area is most unsuitable to preserve. <br />
+> c) Both _a_ and _b_ are correct. <br />
 
 
 <!-- Problem -->
@@ -200,9 +200,9 @@ p1 <- problem(sim_pu_polygons, features = sim_features,
 <br />
 
 <div align="center">
-  <img src="images/purchase_cost_forest.PNG" alt="Purchasing costs" width="550" height="550">
+  <img src="images/problem_definition.PNG" alt="Problem definition" width="800" height="400">
   <br />
-  <em>Figure 2. Overview of the purchasing costs of each square kilometer of forest</em>
+  <em>Figure X. How a problem definition translates into R code</em>
 </div>
 
 <!-- Cons Pros -->
