@@ -91,7 +91,7 @@ data(sim_pu_polygons)
 
 <br />
 The data we just loaded will (hopefully) appear in the environment tab in the topright corner of your screen called _sim_pu_polygons_. This R object contains data about three variables for every single grid cell. The first variable is the cost to purchase each grid cell, which we going to check out now. This data is presented as polygons in a so called spatial vector format. For now that does not seem to make much difference as we will see a perfectly square forest with equally sized grid cells. However, this will come in handy when working with real data, as our world is often divided into areas that follow natural or man-made boundaries. By using this spatial vector format, it is possible to define polygons precisely matching the area in question, which we will see later on when we apply this to a case study. The function _spplot_ is able to visualize these polygons, now visualize the purchase costs per grid cell using the following code:
-<br />
+<br>
 
 ```R
 # Show the purchase costs per km2
@@ -141,8 +141,19 @@ If you count the colored cells in the visualized "locked-in" variable, one can f
 <br>
 
 * Feature data
+Conservation features are represented using a stack of raster data (i.e. RasterStack objects). A RasterStack represents a collection of RasterLayers with the same spatial properties (i.e. spatial extent, coordinate system, dimensionality, and resolution). Each RasterLayer in the stack describes the distribution of a conservation feature.
 
+In our example, the sim_features object is a RasterStack object that contains 5 layers. Each RasterLayer describes the distribution of a species. Specifically, the pixel values denote the proportion of suitable habitat across different areas inside the study area. For a given layer, pixels with a value of one are comprised entirely of suitable habitat for the feature, and pixels with a value of zero contain no suitable habitat.
 
+```R
+# load feature data
+data(sim_features)
+
+# plot the distribution of suitable habitat for each feature
+plot(sim_features, main = paste("Feature", seq_len(nlayers(sim_features))),
+     nr = 2)
+```
+     
 > Question 5. Upon visual inspection of the plots, which part of the forest would you not opt to preserve?
 > a) The northeastern part
 > b) The northwestern part
