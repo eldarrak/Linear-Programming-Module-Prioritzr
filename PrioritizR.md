@@ -179,7 +179,7 @@ The first layer contains the highest value (0.93) of the five layers.
 
 <br />
 
-Similarly as the cost data, the suitability layers contain spatial information (i.e. spatial extent, coordinate system and resolution) which we can use to plot the suitability maps and investigate their spatial differences. As you can imagine, the most optimal square kilometer of forest to conserve is the cell that contains high suitability values for each of the five species. It is possible to plot all the five suitability layers at the same time using the following code:
+Similarly as the cost data, the suitability layers contain spatial information (i.e. spatial extent, coordinate system and resolution) which we can use to plot the suitability maps and investigate their spatial differences. As you can imagine, the most optimal square kilometer of forest to conserve is the cell that contains the highest suitability values for each of the five species. It is possible to plot all the five suitability layers at the same time using the following code:
 
 ```R
 # plot the distribution of suitable habitat for each feature
@@ -188,7 +188,7 @@ plot(sim_features, main = paste("Suitability map", c("first", "second", "third",
 
 <br />
 
-> Question 6. Upon visual inspection of the plots, which part of the forest would you *not* opt to preserve? <br />
+> Question 6. Upon visual inspection of the plots, which part of the forest would you **not** opt to preserve? <br />
 > <br />
 > a) The northeastern part <br />
 > b) The northwestern part <br />
