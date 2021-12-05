@@ -151,7 +151,7 @@ If you count the colored cells in the visualized "locked-in" variable, one can f
 <br />
 <br />
 
-### Feature data - work in progress
+### Feature data
 
 You just visualized the costs of each square kilometer of forest, but this variable is not the only variable of interest in our conservation planning problem. If all the raster cells are equally worth preserving, than the planning problem becomes quite easy to solve; just select the cheapest cells, such that you can preserve the maximum amount of area for _X_ amount of money. However, in order to save the maximum amount of biodiversity, one area might be more suitable to preserve than another. In that case it could be worth to preserve the more suitable area even though the costs are higher. As mentioned earlier, the variables that determine suitability may consist of different types of data (ecological, hydrological, pedological data etc.) and their relevance depend on the problem to be solved. For our task, the data of interest is already provided by the prioritizr package, load the data as follows:
 
@@ -219,6 +219,21 @@ Answer C. The area has the highest cost (the maximum amount of €215900) and al
 
 <!-- Problem -->
 ## Defining the problem
+
+Maybe you noticed when looking at the suitability maps and data, that the ranges in suitability values differ among the species. This influences the way in which we want to solve the problem at hand. In plain words, our objective is to maximize the amount of biodiversity, but we need to translate this into a function in order to solve it in R. If we would define the objective as: maximize(suitability first species + suitability second species + ..._n_ species), then the relative importance of the first species in this formula is way higher than the second, as the suitability of the first species is on average twice as high as the second (check this yourself with the legend of the suitability maps). This would result, for example, in preserving areas with high suitability for the first species, while the suitability for the second species doesn't really matter. In that case it could happen that an area with a suitability of 1 for the first species and 0 suitability for the others (total = 1.0), would be preserved over an area with a suitability of 0.15 for each of the species (total = 0.75). The former would only preserve one species very well while in the latter case, five species would be marginally preserved. Yet we are trying to maximize biodiversity and preserving only one species seems to be the opposite of that. Thererfore we need to adjust the objective to account for these differences.
+
+> Question 8. How would you define the objective such that all species are included?
+
+<br />
+<details>
+<summary>Answer Q8.</summary>
+Tell me
+</details>
+
+One way to deal with this problem....
+
+
+
 
 Let’s say that we want to develop a reserve network that will secure 15% of the distribution for each feature in the study area for minimal cost. In this planning scenario, we can either purchase all of the land inside a given planning unit, or none of the land inside a given planning unit. Thus we will create a new problem that will use a minimum set objective (add_min_set_objective), with relative targets of 15% (add_relative_targets), binary decisions (add_binary_decisions), and specify that we want to want optimal solutions from the best solver installed on our system (add_default_solver).
 
