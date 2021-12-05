@@ -153,9 +153,55 @@ If you count the colored cells in the visualized "locked-in" variable, one can f
 
 ### Feature data - work in progress
 
+You just visualized the costs of each square kilometer of forest, but this variable is not the only variable of interest in our conservation planning problem. If all the raster cells are equally worth preserving, than the planning problem becomes quite easy to solve; just select the cheapest cells, such that you can preserve the maximum amount of area for _X_ amount of money. However, in order to save the maximum amount of biodiversity, one area might be more suitable to preserve than another. In that case it could be worth to preserve the more suitable area even though the costs are higher. As mentioned earlier, the variables that determine suitability may consist of different types of data (ecological, hydrological, pedological data etc.) and their relevance depend on the problem to be solved. For our task, the data of interest is already provided by the prioritizr package, load the data as follows:
+
+```R
+# Load feature data
+data(sim_features)
+```
+<br />
+
+This data consists of five different layers, with each layer indicating the habitat suitability of a specific species. The suitability for each species is estimated on a plethora of variables and ranges from 0 (not suitable) to 1 (very suitable). We can check the range of values for the suitability using the following command:
+
+```R
+# Check feature data
+sim_features@layers
+```
+<br />
+
+> Question 5. Which layer contains the highest suitability value?
+
+<br />
+<details>
+<summary>Answer Q5.</summary>
+The first layer contains the highest value (0.93) of the five layers.
+</details>
+
+<br />
+
+Similarly as the cost data, the suitability layers 
 Conservation features are represented using a stack of raster data (i.e. RasterStack objects). A RasterStack represents a collection of RasterLayers with the same spatial properties (i.e. spatial extent, coordinate system, dimensionality, and resolution). Each RasterLayer in the stack describes the distribution of a conservation feature.
 
 In our example, the sim_features object is a RasterStack object that contains 5 layers. Each RasterLayer describes the distribution of a species. Specifically, the pixel values denote the proportion of suitable habitat across different areas inside the study area. For a given layer, pixels with a value of one are comprised entirely of suitable habitat for the feature, and pixels with a value of zero contain no suitable habitat.
+
+
+
+Normally you would first need to calculate the suitability yourself.
+The suitability ranges from 0 (not suitable) to 1 (very suitable) for a species 
+The suitability is already calculated based on a plethora of variables and ranges from 0 (not suitable) to 1 (very suitable) for a species 
+
+Suitability was estimated based on a large number of variables and ranged from 0 (not suitable) to 1 (very suitable) for a species 
+
+
+This data consists of five different layers, with each layer indicating the suitability of a specific species.
+
+which are about the suitability of five different species.  already contains 
+
+, depending on the task to be performed
+s mentioned earlier, the variables that determine the suitability , depending on the task at hand.
+
+
+
 
 ```R
 # load feature data
