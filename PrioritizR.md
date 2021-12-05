@@ -179,42 +179,16 @@ The first layer contains the highest value (0.93) of the five layers.
 
 <br />
 
-Similarly as the cost data, the suitability layers 
-Conservation features are represented using a stack of raster data (i.e. RasterStack objects). A RasterStack represents a collection of RasterLayers with the same spatial properties (i.e. spatial extent, coordinate system, dimensionality, and resolution). Each RasterLayer in the stack describes the distribution of a conservation feature.
-
-In our example, the sim_features object is a RasterStack object that contains 5 layers. Each RasterLayer describes the distribution of a species. Specifically, the pixel values denote the proportion of suitable habitat across different areas inside the study area. For a given layer, pixels with a value of one are comprised entirely of suitable habitat for the feature, and pixels with a value of zero contain no suitable habitat.
-
-
-
-Normally you would first need to calculate the suitability yourself.
-The suitability ranges from 0 (not suitable) to 1 (very suitable) for a species 
-The suitability is already calculated based on a plethora of variables and ranges from 0 (not suitable) to 1 (very suitable) for a species 
-
-Suitability was estimated based on a large number of variables and ranged from 0 (not suitable) to 1 (very suitable) for a species 
-
-
-This data consists of five different layers, with each layer indicating the suitability of a specific species.
-
-which are about the suitability of five different species.  already contains 
-
-, depending on the task to be performed
-s mentioned earlier, the variables that determine the suitability , depending on the task at hand.
-
-
-
+Similarly as the cost data, the suitability layers contain spatial information (i.e. spatial extent, coordinate system and resolution) which we can use to plot the suitability maps and investigate their spatial differences. As you can imagine, the most optimal square kilometer of forest to conserve is the cell that contains high suitability values for each of the five species. It is possible to plot all the five suitability layers at the same time using the following code:
 
 ```R
-# load feature data
-data(sim_features)
-
 # plot the distribution of suitable habitat for each feature
-plot(sim_features, main = paste("Feature", seq_len(nlayers(sim_features))),
-     nr = 2)
+plot(sim_features, main = paste("Suitability map", c("first", "second", "third", "fourth", "fifth"),"species"))
 ```
 
 <br />
 
-> Question 5. Upon visual inspection of the plots, which part of the forest would you not opt to preserve? <br />
+> Question 6. Upon visual inspection of the plots, which part of the forest would you *not* opt to preserve? <br />
 > <br />
 > a) The northeastern part <br />
 > b) The northwestern part <br />
@@ -223,13 +197,13 @@ plot(sim_features, main = paste("Feature", seq_len(nlayers(sim_features))),
 
 <br />
 <details>
-<summary>Answer Q5.</summary>
+<summary>Answer Q6.</summary>
 Answer A. The northwestern part is inefficient to preserve.
 </details>
 
 <br />
 
-> Question 6. Why this area? <br />
+> Question 7. Why this area? <br />
 > <br />
 > a) This area has the highest costs. <br />
 > b) This area is most unsuitable to preserve. <br />
@@ -237,7 +211,7 @@ Answer A. The northwestern part is inefficient to preserve.
 
 <br />
 <details>
-<summary>Answer Q6.</summary>
+<summary>Answer Q7.</summary>
 Answer C. The area has the highest cost (the maximum amount of €215900) and also three of the features are highly unsuitable.
 </details>
 
