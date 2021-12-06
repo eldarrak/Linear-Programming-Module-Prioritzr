@@ -234,34 +234,24 @@ One way to deal with this dilemma is to set relative targets for each of the spe
 
 With the objective and constraints in mind, we can now start to define our problem in R. First, let's make a summary of the various parts of our problem.
 
-* 1) We have data on the costs per km<sup>2</sup> of forest.
-* 2) We also have data on the suitability ratio for five species per km<sup>2</sup>.
-* 3) There is a constraint that we cannot spend more than 3000 (x1000's of euros).
-* 4) The aim is to preserve at least 15% of the suitability for each species to achieve maximum conservation of biodiversity.
-* 5) The square kilometers of forest can either be bought or not bought, there is no in between.
+* 1 - We have data on the costs per km<sup>2</sup> of forest.
+* 2 - We also have data on the suitability ratio for five species per km<sup>2</sup>.
+* 3 - There is a constraint that we cannot spend more than 3000 (x1000's of euros).
+* 4 - The aim is to preserve at least 15% of the suitability for each species to achieve maximum conservation of biodiversity.
+* 5 - The square kilometers of forest can either be bought or not bought, there is no in between.
 
-1. We have data on the costs per km<sup>2</sup> of forest.
-2. We also have data on the suitability ratio for five species per km<sup>2</sup>.
-3. There is a constraint that we cannot spend more than 3000 (x1000's of euros).
-4. The aim is to preserve at least 15% of the suitability for each species to achieve maximum conservation of biodiversity.
-5. The square kilometers of forest can either be bought or not bought, there is no in between.
-
-Basically what this problem solves is: Specify areas that will secure at least 15% of the optimal suitability of each species in the study area for less than 3 million in cost.
-
-
-
-
-Let’s say that we want to develop a reserve network that will secure 15% of the distribution for each feature in the study area for minimal cost. In this planning scenario, we can either purchase all of the land inside a given planning unit, or none of the land inside a given planning unit. Thus we will create a new problem that will use a minimum set objective (add_min_set_objective), with relative targets of 15% (add_relative_targets), binary decisions (add_binary_decisions), and specify that we want to want optimal solutions from the best solver installed on our system (add_default_solver).
+The order in which the summary is made, is quite similar as the order in which we will enter our problem in R. The prioritizR package contains the function _problem_ in which the first arguments are the data of the costs (sim_pu_polygons [1]) and the features (sim_features [2]). Then we add the constraint of our funds (add_min_shortfall_objective [3]) and the relative targets of 15% for each of the species (add_relative_targets [4]). In this planning scenario, we can either purchase all of the land inside a given planning unit, or none of the land inside a given planning unit, which we should also inform R about (add_binary_decisions [5]). All in all, our problem definition (p1) in R can be defined by the code below, which we are going to solve with Gurobi, our default solver that we installed earlier (add_default_solver).
 
 ```R
-# create problem
-p1 <- problem(sim_pu_polygons, features = sim_features,
-              cost_column = "cost") %>%
-      add_min_set_objective() %>%
-      add_relative_targets(0.15) %>%
-      add_binary_decisions() %>%
-      add_default_solver(gap = 0)
+# create conservation planning problem
+p1 <- problem(sim_pu_polygons, sim_features, cost_column = "cost") %>%
+  add_min_shortfall_objective(3000) %>%
+  add_relative_targets(0.15) %>%
+  add_binary_decisions() %>%
+  add_default_solver()
 ```
+
+As you can notice, the code above makes use of a so-called [pipe](https://prioritizr.net/reference/pipe.html) operator: _%>%_, which allows us to add arguments to a function that is already denoted. The convenience of using the pipe operator allows you to modify a part of the function without rewriting and evaluating the entire function with all its argument.     
 
 <br />
 <br />
@@ -271,6 +261,35 @@ p1 <- problem(sim_pu_polygons, features = sim_features,
   <br />
   <em>Figure 3. Example of how a problem definition translates into R code</em>
 </div>
+
+<br />
+
+Our Gurobi solver has been waiting to crunch some numbers, it is time to solve this conservation problem! The modest code below will activate Gurobi to solve the problem using the simplex algorithm.
+
+```R
+# Solve the problem (p1)
+s1 <- solve(p1)
+```
+
+<br />
+
+Basically what Gurobi tried to solve is: Specify areas that will secure at least 15% of the optimal suitability of each species in the study area for less than 3 million in cost. To see whether that objective is fullfilled we can look at the solution which is stored in the solution variable _s1_. The areas that should be conserved, according to the optimal solution that Gurobi found, are saved in _solution_1_, which we can visualize using the following R code:
+
+```R
+# plot the solution
+spplot(s1, "solution_1", main = "Solution p1", at = c(0, 0.5, 1.1),
+       col.regions = c("grey90", "darkgreen"), xlim = c(-0.1, 1.1),
+       ylim = c(-0.1, 1.1))
+```
+
+If everything went correctly, you will see figure 4, our study area with green colored cells that indicate the areas that should be conserved to maximize biodiversity.
+
+<div align="center">
+  <img src="images/solution_p1.PNG" alt="Solution p1" width="550" height="550">
+  <br />
+  <em>Figure 4. Optimal solution for problem p1, green cells indicate the areas that should be conserved</em>
+</div>
+
 
 <!-- Cons Pros -->
 ## Constraints & Objectives
