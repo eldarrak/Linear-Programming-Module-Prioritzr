@@ -286,7 +286,7 @@ spplot(s1, "solution_1", main = "Solution p1", at = c(0, 0.5, 1.1),
 
 <br />
 
-If everything went correctly, you will see figure 4, our study area with green colored cells that indicate the areas that should be conserved to maximize biodiversity.
+If everything went correctly, you will see figure 4; our study area with green colored cells that indicate the areas that should be conserved to maximize biodiversity.
 
 <div align="center">
   <img src="images/solution_p1.PNG" alt="Solution p1" width="550" height="550">
@@ -294,6 +294,33 @@ If everything went correctly, you will see figure 4, our study area with green c
   <em>Figure 4. Optimal solution for problem p1, green cells indicate the areas that should be conserved</em>
 </div>
 
+While it is interesting to see the spatial distribution of the proposed conservation areas, this plot doesn't tell us whether or not we have achieved our objective. The Forest Service might want to know the total cost of this conservation plan and how suitable the areas are for each of the species. It is possible to retrieve this information from the solution and print it in R.
+
+```R
+# Retrieve summary statistics of the solution
+print(eval_cost_summary(p1, s1[, "solution_1"]), width = Inf)
+print(eval_target_coverage_summary(p1, s1[, "solution_1"]), width = Inf)
+```
+
+<br />
+
+The first print statement shows the total cost of this optimal solution, this proposed plan would cost 2.85 million euros in total (check this yourself). The second print statement shows a summary of the targets and to what extent they were achieved. Starting on the left side, we see five layers, each row indicating the suitability of one of the species. The second column shows the total amount of suitability, which is the suitability per cell (which ranges from 0 - 1) summed together over the raster. This value doesn't provide us much information, except we aimed to achieve 15% of this total suitability for each species in our solution. The two columns besides this shows the target in total suitability and how much we actually achieved with the solution. While the numbers are not a directly interesting statistic, you may already be able to tell that this solution 'holds' more suitability than the target that we set. In this case, it is more interesting to see how much of the relative targets have been achieved as these are directly interpretable. From the printed statistics it is clear that our solution (_relative_held_) is greater than the set target of 15% (_relative_target_). In other cases the absolute values of the targets might be of more interest, for example when you are tasked 
+
+<br />
+
+> Question 9. For which species has the relative target been achieved the most? For the: <br />
+> <br />
+> a) First species <br />
+> b) Second species <br />
+> c) Third species <br />
+> d) Fourth species <br />
+> e) Fifth species <br />
+
+<br />
+<details>
+<summary>Answer Q9.</summary>
+Answer D. The fourth species has achieved most of its relative target, a total of 16.8% (0.168) of the total suitability for this species in the study area is preserved in this solution. Note that the percentages for each of the species differ only slightly. Because you have set relative targets, each species is as important to preserve as the other.
+</details>
 
 
 * Show the other output functionality (print statements)
