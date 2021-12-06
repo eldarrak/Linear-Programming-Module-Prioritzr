@@ -227,10 +227,21 @@ Maybe you noticed when looking at the suitability maps and data, that the ranges
 <br />
 <details>
 <summary>Answer Q8.</summary>
-Tell me
+Various objectives are possible.
 </details>
 
-One way to deal with this problem....
+One way to deal with this dilemma is to set relative targets for each of the species. For instance, we can define a target that at least 15% of the total suitability for each species should be conserved. While we aim to reach this target, we are still constrained by the amount of money that we can spend on conservation. Earlier you saw that the cells costs are in thousands of euros. Let's assume that the Forestry Service that commissioned this task has 3 million euros to spend on conservation; any cell can be bought, as long as the total spending is less than 3 million. Therefore the objective is to preserve as much suitability relative for each species that 3 million euro's can buy. It is interesting to note that the size of the area doesn't matter in this objective, as long as >15% suitability / species is preserved, the objective is reached. Therefore this objective focuses on quality over quantity.
+
+With the objective and constraints in mind, we can now start to define our problem in R. First, let's make a summary of the various parts of our problem.
+
+* We have data on the costs per km<sup>2</sup> of forest.
+* We also have data on the suitability ratio for five species per km<sup>2</sup>.
+* There is a constraint that we cannot spend more than 3000 (x1000's of euros).
+* The aim is to preserve at least 15% of the suitability for each species to achieve maximum conservation of biodiversity.
+* The square kilometers of forest can either be bought or not bought, there is no in between.
+
+
+Basically what this problem solves is: Specify areas that will secure at least 15% of the optimal suitability of each species in the study area for less than 3 million in cost.
 
 
 
@@ -253,7 +264,7 @@ p1 <- problem(sim_pu_polygons, features = sim_features,
 <div align="center">
   <img src="images/problem_definition.PNG" alt="Problem definition" width="800" height="400">
   <br />
-  <em>Figure X. How a problem definition translates into R code</em>
+  <em>Figure 3. Example of how a problem definition translates into R code</em>
 </div>
 
 <!-- Cons Pros -->
