@@ -44,7 +44,7 @@
 <!-- PPP -->
 ## Preparing your first PriotizR Project
 
-In this section, we are going to explore step by step how linear programming (LP) can be implemented on a spatial scale. For this purpose, we will imagine the aforementioned task; indicating which areas of a forest should be protected in order to preserve .....the maximum amount of biodiversity? Suppose the forest in question is a perfect square of 10 by 10 kilometers, divided into grid cells of 1 km<sup>2</sup>. Each grid cell of forest may attain the _preserved_ status, but there can only be a limited amount of grid cells that can be preserved due to some constraint(s).
+In this section, we are going to explore step by step how linear programming (LP) can be implemented on a spatial scale. For this purpose, we will imagine the aforementioned task; indicating which areas of a forest should be protected in order to preserve the maximum amount of biodiversity. Suppose the forest in question is a perfect square of 10 by 10 kilometers, divided into grid cells of 1 km<sup>2</sup>. Each grid cell of forest may attain the _preserved_ status, but there can only be a limited amount of grid cells that can be preserved due to some constraint(s).
 
 <br />
 
@@ -68,7 +68,7 @@ Depending on your LP problem, numerous types of variables can be of interest. In
 
 <br />
 
-Now that we have a basic understanding of the data we could use to reach our objective (OBJECTIVE IS NOT CLEAR YET, MAXIMUM BIODIVERSITY?) of preserving the ... and possible constraints that limit our options, we can check how our conservation task would look in real life. In order to do so, we will make use of data that is already available in the PrioritizR package. Therefore, fire up Rstudio and load the PrioritizR library, now that we are at it, also load the Gurobi library which we will use to solve our LP problem later on.
+Now that we have a basic understanding of the data we could use to reach our objective of preserving the maximum amount of biodiversity and possible constraints that limit our options, we can check how our conservation task would look in real life. In order to do so, we will make use of data that is already available in the PrioritizR package. Therefore, fire up Rstudio and load the PrioritizR library, now that we are at it, also load the Gurobi library which we will use to solve our LP problem later on.
 
 ```R
 # load packages
@@ -133,11 +133,11 @@ Using the function summary(forest_cost) for example, one can find that the maxim
 
 <br />
 
-As you can see in the new _forest cost_ variable, there are also two other columns in the data; _locked_in_ and _locked_out_. The locked_in column describes whether a grid cell is already being protected or not. The locked_out column details whether a grid cell can be preserved at all, maybe there is a train track crossing the forest, which makes it impossible to protect the grid cells within which it lies. Now visualize the locked_in data similarly as how you visualized the purchase costs earlier, copy the code and change the necessary parts accordingly.
+As you can see in the new _forest cost_ variable, there are also two other columns in the data; _locked_in_ and _locked_out_. The locked_in column describes whether a grid cell needs to be protected or not (due to other reasons outside the scope of our objective). The locked_out column details whether a grid cell can be preserved at all, maybe there is a train track crossing the forest, which makes it impossible to protect the grid cells within which it lies. Now visualize the locked_in data similarly as how you visualized the purchase costs earlier, copy the code and change the necessary parts accordingly.
 
 <br />
 
-> Question 4. How many grid cells are already preserved?
+> Question 4. How many grid cells are already designated to be conserved?
 
 <br />
 <details>
@@ -332,6 +332,34 @@ Answer D. The fourth species has achieved most of its relative target, a total o
 
 <!-- Cons Pros -->
 ## Constraints & Objectives
+
+You've successfully solved your first spatial conservation planning problem! However, the problem is not solved yet, there's more to explore. While the solution you found might be optimal for the defined problem, the proposed areas for conservation sketches just one scenario. It would be useful to consider more than one scenario, and there may be constraints and objectives that we have not anticipated, which changes the problem definition.
+
+<br \>
+
+One of the constraints that we have not considered yet, is the fact that some some of the planning units are already designated to be conserved. Since our planning unit data contains information on which planning units are already designated (in the _locked_in_ variable you plotted earlier), we can add constraints to ensure they are prioritized in the solution (add_locked_in_constraints).
+
+```R
+# create new problem with locked in constraints added to it
+p2 <- p1 %>%
+      add_locked_in_constraints("locked_in")
+
+# solve the problem
+s2 <- solve(p2)
+```
+
+<br />
+
+> Question 10. What are the costs of the solution where the already designated areas to be conserved are included? Are all the relative targets reached?
+
+<br />
+<details>
+<summary>Answer Q10.</summary>
+The costs of this solution are 2.87 million euros, all the targets are achieved.
+</details>
+
+**phone rings**, hello? hmm.. yes, what's that? oh OK. The Forestry Service just called, they want to notify that their expenses for this project are cut by one-third and that there is only 2 million euros available for conservation measures. 
+
 
 This solution is an improvement over the previous solution. However, it is also highly fragmented. As a consequence, this solution may be associated with increased management costs and the species in this scenario may not benefit substantially from this solution due to edge effects. We can further modify the problem by adding penalties that punish overly fragmented solutions (add_boundary_penalties). Here we will use a penalty factor of 300 (i.e. boundary length modifier; BLM), and an edge factor of 50% so that planning units that occur outer edge of the study area are not overly penalized.
 
