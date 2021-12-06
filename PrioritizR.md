@@ -24,12 +24,12 @@
     <li>
       <a href="#PPP">Preparing your first PriotizR Project</a>
       <ul>
-        <li><a href="Inspecting the data">Inspecting the data</a></li>
-        <li><a href="Feature data">Feature data</a></li>
+        <li><a href="Inspecting">Inspecting the data</a></li>
+        <li><a href="Feature">Feature data</a></li>
       </ul>
     </li>
     <li>
-      <a href="#Defining the problem">Defining the problem</a>
+      <a href="#Problem">Defining the problem</a>
       <ul>
         <li><a href="#prerequisites">Prerequisites</a></li>
         <li><a href="#installation">Installation</a></li>
@@ -78,6 +78,7 @@ library(gurobi)
 
 <br />
 
+<!-- Inspecting -->
 ### Inspecting the data
 
 The data for our forest in question is divided into two parts; on the one hand we have the constraint(s) and data about whether a grid cell can be preserved or not. On the other hand we have different variables of interest that we can use to indicate which grid cells would be optimal to preserve in order to satisfy our objective to the fullest. In this case, the constraint is a matter of money, whereas we have a limited amount of cash available to preserve this forest and each grid cell costs a certain amount of money to be preserved. As you can imagine, the costs of preservation varies across the grid. This might be due to land costs; for example if the forest is partly owned by foresters that should be bought out or compensated. Or this might be due to accessibility; in case some areas are harder to reach and the costs are higher to implement necessary management practices. Let's assume the former scenario where land must be purchased and the costs are in thousands of euros per km<sup>2</sup>. With this in mind, we are going to take a look at the forest, but first we have to load the data:
@@ -147,6 +148,7 @@ If you count the colored cells in the visualized "locked-in" variable, one can f
 <br />
 <br />
 
+<!-- Feature -->
 ### Feature data
 
 You just visualized the costs of each square kilometer of forest, but this variable is not the only variable of interest in our conservation planning problem. If all the raster cells are equally worth preserving, than the planning problem becomes quite easy to solve; just select the cheapest cells, such that you can preserve the maximum amount of area for _X_ amount of money. However, in order to save the maximum amount of biodiversity, one area might be more suitable to preserve than another. In that case it could be worth to preserve the more suitable area even though the costs are higher. As mentioned earlier, the variables that determine suitability may consist of different types of data (ecological, hydrological, pedological data etc.) and their relevance depend on the problem to be solved. For our task, the data of interest is already provided by the prioritizr package, load the data as follows:
