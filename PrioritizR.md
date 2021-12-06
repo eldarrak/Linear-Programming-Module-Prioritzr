@@ -295,6 +295,14 @@ If everything went correctly, you will see figure 4, our study area with green c
 </div>
 
 
+
+* Show the other output functionality (print statements)
+* Decrease the amount of money to 2mil
+- Ask question how much objective reached
+* Fragmentation
+- Ask question: mathematical definition to constrain fragmentation
+
+
 <!-- Cons Pros -->
 ## Constraints & Objectives
 
