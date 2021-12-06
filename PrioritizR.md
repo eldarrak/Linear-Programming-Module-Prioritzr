@@ -234,7 +234,7 @@ With the objective and constraints in mind, we can now start to define our probl
 
 * 1 - We have data on the costs per km<sup>2</sup> of forest.
 * 2 - We also have data on the suitability ratio for five species per km<sup>2</sup>.
-* 3 - There is a constraint that we cannot spend more than 3000 (x1000's of euros).
+* 3 - There is a constraint that we cannot spend more than 3000 (x1000's of euros = 3mil).
 * 4 - The aim is to preserve at least 15% of the suitability for each species to achieve maximum conservation of biodiversity.
 * 5 - The square kilometers of forest can either be bought or not bought, there is no in between.
 
