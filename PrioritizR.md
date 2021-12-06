@@ -240,7 +240,11 @@ With the objective and constraints in mind, we can now start to define our probl
 * 4 - The aim is to preserve at least 15% of the suitability for each species to achieve maximum conservation of biodiversity.
 * 5 - The square kilometers of forest can either be bought or not bought, there is no in between.
 
+<br />
+
 The order in which the summary is made, is quite similar as the order in which we will enter our problem in R. The prioritizR package contains the function _problem_ in which the first arguments are the data of the costs (sim_pu_polygons [1]) and the features (sim_features [2]). Then we add the constraint of our funds (add_min_shortfall_objective [3]) and the relative targets of 15% for each of the species (add_relative_targets [4]). In this planning scenario, we can either purchase all of the land inside a given planning unit, or none of the land inside a given planning unit, which we should also inform R about (add_binary_decisions [5]). All in all, our problem definition (p1) in R can be defined by the code below, which we are going to solve with Gurobi, our default solver that we installed earlier (add_default_solver).
+
+<br />
 
 ```R
 # create conservation planning problem
@@ -281,6 +285,8 @@ spplot(s1, "solution_1", main = "Solution p1", at = c(0, 0.5, 1.1),
        col.regions = c("grey90", "darkgreen"), xlim = c(-0.1, 1.1),
        ylim = c(-0.1, 1.1))
 ```
+
+<br />
 
 If everything went correctly, you will see figure 4, our study area with green colored cells that indicate the areas that should be conserved to maximize biodiversity.
 
