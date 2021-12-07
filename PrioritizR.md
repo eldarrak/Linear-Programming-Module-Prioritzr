@@ -395,7 +395,7 @@ Answers will be added later on.
 
 <br />
 
-# Fragmentation
+### Fragmentation
 
 If you would look back at the first solution (figure 4), it is rather clear that the proposed areas are highly fragmented. As a consequence, this solution may be associated with increased management costs and the species in this scenario may not benefit substantially from this solution due to edge effects. These edge effects and other consequences due to fragmentation are not yet included in our problem definition, yet we know from various studies that these impacts should be taken into consideration. Somehow we should try to limit the amount of fragmentation by adding another parameter to the problem definition. To do so, it is important to have a clear idea of how to define fragmentation mathematically to penalize solutions with high levels of fragmentation.
 
