@@ -339,7 +339,7 @@ Answer D. The fourth species has achieved most of its relative target, a total o
 
 You've successfully solved your first spatial conservation planning problem! However, the problem is not solved yet, there's more to explore. While the solution you found might be optimal for the defined problem, the proposed areas for conservation sketches just one scenario. It would be useful to consider more than one scenario, and there may be constraints and objectives that we have not anticipated, which changes the problem definition.
 
-<br \>
+<br />
 
 One of the constraints that we have not considered yet, is the fact that some some of the planning units are already designated to be conserved. Since our planning unit data contains information on which planning units are already designated (in the _locked_in_ variable you plotted earlier), we can add constraints to ensure they are prioritized in the solution (add_locked_in_constraints). In the code below you can see how we can add a new constraint to our planning problem using the pipe function without having to declare all the parameters again.
 
@@ -352,7 +352,7 @@ p2 <- p1 %>%
 s2 <- solve(p2)
 ```
 
-<br \>
+<br />
 
 > Question 10. What are the costs of the solution where the already designated areas to be conserved are included? Are all the relative targets reached?
 
@@ -402,10 +402,10 @@ If you would look back at the first solution (figure 4), it is rather clear that
 <br />
 <details>
 <summary>Answer Q13.</summary>
-Many expressions are possible. Here is a few of them:
-* minimize(preservation area / preservation border)
-* maximize(neighbour connections between preservation areas)
-* Or add a constraint: number of border connections to other preservation areas cannot be less < 2) 
+Many expressions are possible. Here is a few of them: <br />
+* minimize(preservation area / preservation border) <br />
+* maximize(neighbour connections between preservation areas) <br />
+* Or add a constraint: number of border connections to other preservation areas cannot be less < 2) <br />
 </details>
 
 
