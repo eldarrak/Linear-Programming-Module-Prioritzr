@@ -326,13 +326,9 @@ The first print statement shows the total cost of this optimal solution, this pr
 Answer D. The fourth species has achieved most of its relative target, a total of 16.8% (0.168) of the total suitability for this species in the study area is preserved in this solution. Note that the percentages for each of the species differ only slightly. Because you have set relative targets, each species is as important to preserve as the other.
 </details>
 
+<br />
 
-* Show the other output functionality (print statements)
-* Decrease the amount of money to 2mil
-- Ask question how much objective reached
-* Fragmentation
-- Ask question: mathematical definition to constrain fragmentation
-
+<br />
 
 <!-- Cons Pros -->
 ## Constraints & Objectives
@@ -382,16 +378,19 @@ Ten square kilometers (10 cells are green in the plot, each cell is 1km<sup>2</s
 
 <br />
 
-If you print the costs and targets of this solution like you did earlier, we can take a look at t
+Now print the costs and targets of this solution like you did earlier, then take a look at the summary statistics of the optimal solution for this problem. It seems that due to our limited budget, we are not able to achieve the targets we have set. Since the budget is not sufficient, this solution is the best we can do for this amount of money.
 
-> Question 12. How many square kilometers of forest are proposed for conservation with the limited budget?
+<br />
+
+> Question 12. What is the average percentage of suitability achieved for the five species?
 
 <br />
 <details>
 <summary>Answer Q12.</summary>
-11.5% ((0.12 + 0.11 + 0.113 + 0.113 + 0.119) / 5)
+On average the preserved suitability of the species is 11.5% ((0.12 + 0.11 + 0.113 + 0.113 + 0.119) / 5), 3.5% short of our target.
 </details>
 
+<br />
 
 # Fragmentation
 
@@ -403,11 +402,12 @@ If you would look back at the first solution (figure 4), it is rather clear that
 <details>
 <summary>Answer Q13.</summary>
 Many expressions are possible. Here is a few of them: <br />
-* minimize(preservation area / preservation border) <br />
-* maximize(neighbour connections between preservation areas) <br />
-* Or add a constraint: number of border connections to other preservation areas cannot be less < 2) <br />
+  * minimize(preservation area / preservation border) <br />
+  * maximize(neighbour connections between preservation areas) <br />
+  * Or add a constraint: number of border connections to other preservation areas cannot be less < 2) <br />
 </details>
 
+<br />
 
 We can further modify the problem by adding penalties that punish overly fragmented solutions (add_boundary_penalties). Here we will use a penalty factor of 300 (i.e. boundary length modifier; BLM), and an edge factor of 50% so that planning units that occur outer edge of the study area are not overly penalized.
 
