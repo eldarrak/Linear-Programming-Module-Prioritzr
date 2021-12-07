@@ -294,6 +294,10 @@ If everything went correctly, you will see figure 4; our study area with green c
   <em>Figure 4. Optimal solution for problem p1, green cells indicate the areas that should be conserved</em>
 </div>
 
+<br \>
+
+<br \>
+
 While it is interesting to see the spatial distribution of the proposed conservation areas, this plot doesn't tell us whether or not we have achieved our objective. The Forest Service might want to know the total cost of this conservation plan and how suitable the areas are for each of the species. It is possible to retrieve this information from the solution and print it in R.
 
 ```R
@@ -337,7 +341,7 @@ You've successfully solved your first spatial conservation planning problem! How
 
 <br \>
 
-One of the constraints that we have not considered yet, is the fact that some some of the planning units are already designated to be conserved. Since our planning unit data contains information on which planning units are already designated (in the _locked_in_ variable you plotted earlier), we can add constraints to ensure they are prioritized in the solution (add_locked_in_constraints).
+One of the constraints that we have not considered yet, is the fact that some some of the planning units are already designated to be conserved. Since our planning unit data contains information on which planning units are already designated (in the _locked_in_ variable you plotted earlier), we can add constraints to ensure they are prioritized in the solution (add_locked_in_constraints). In the code below you can see how we can add a new constraint to our planning problem using the pipe function without having to declare all the parameters again.
 
 ```R
 # create new problem with locked in constraints added to it
@@ -348,7 +352,7 @@ p2 <- p1 %>%
 s2 <- solve(p2)
 ```
 
-<br />
+<br \>
 
 > Question 10. What are the costs of the solution where the already designated areas to be conserved are included? Are all the relative targets reached?
 
@@ -358,10 +362,54 @@ s2 <- solve(p2)
 The costs of this solution are 2.87 million euros, all the targets are achieved.
 </details>
 
-**phone rings**, hello? hmm.. yes, what's that? oh OK. The Forestry Service just called, they want to notify that their expenses for this project are cut by one-third and that there is only 2 million euros available for conservation measures. 
+**phone rings**, hello? hmm.. yes, what's that? oh OK. <br \>
+The Forestry Service just called, they want to notify us that their expenses for this project are cut by one-third and that only 2 million euros are left for conservation measures. Furthermore, they inform us that the designated _locked_in_ areas are not important anymore, we can select any area that is most optimal for conservation. Try to solve this new scenario, use defined problem _p1_ (without the locked-in constraints) to define problem _p3_, taking the new budget into consideration.
+
+```R
+# Conservation problem with the cut budget.
+p3 <- p1 %>% what_comes_here(questionmark)
+```
+
+<br />
+
+> Question 11. How many square kilometers of forest are proposed for conservation with the limited budget?
+
+<br />
+<details>
+<summary>Answer Q11.</summary>
+Ten square kilometers (10 cells are green in the plot, each cell is 1km<sup>2</sup>).
+</details>
+
+<br />
+
+If you print the costs and targets of this solution like you did earlier, we can take a look at t
+
+> Question 12. How many square kilometers of forest are proposed for conservation with the limited budget?
+
+<br />
+<details>
+<summary>Answer Q12.</summary>
+11.5% ((0.12 + 0.11 + 0.113 + 0.113 + 0.119) / 5)
+</details>
 
 
-This solution is an improvement over the previous solution. However, it is also highly fragmented. As a consequence, this solution may be associated with increased management costs and the species in this scenario may not benefit substantially from this solution due to edge effects. We can further modify the problem by adding penalties that punish overly fragmented solutions (add_boundary_penalties). Here we will use a penalty factor of 300 (i.e. boundary length modifier; BLM), and an edge factor of 50% so that planning units that occur outer edge of the study area are not overly penalized.
+# Fragmentation
+
+If you would look back at the first solution (figure 4), it is rather clear that the proposed areas are highly fragmented. As a consequence, this solution may be associated with increased management costs and the species in this scenario may not benefit substantially from this solution due to edge effects. These edge effects and other consequences due to fragmentation are not yet included in our problem definition, yet we know from various studies that these impacts should be taken into consideration. Somehow we should try to limit the amount of fragmentation by adding another parameter to the problem definition. To do so, it is important to have a clear idea of how to define fragmentation mathematically to penalize solutions with high levels of fragmentation.
+
+> Question 13. How would you reduce fragmentation? Provide a (mathematical) expression that would limit the amount of fragmentation. It helps to think of an equation you want to maximize or minimize.
+
+<br />
+<details>
+<summary>Answer Q13.</summary>
+Many expressions are possible. Here is a few of them:
+* minimize(preservation area / preservation border)
+* maximize(neighbour connections between preservation areas)
+* Or add a constraint: number of border connections to other preservation areas cannot be less < 2) 
+</details>
+
+
+We can further modify the problem by adding penalties that punish overly fragmented solutions (add_boundary_penalties). Here we will use a penalty factor of 300 (i.e. boundary length modifier; BLM), and an edge factor of 50% so that planning units that occur outer edge of the study area are not overly penalized.
 
 This solution is even better then the previous solution. However, we are not finished yet. This solution does not maintain connectivity between reserves, and so species may have limited capacity to disperse throughout the solution. To avoid this, we can add contiguity constraints (add_contiguity_constraints).
 
