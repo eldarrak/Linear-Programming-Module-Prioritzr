@@ -294,9 +294,9 @@ If everything went correctly, you will see figure 4; our study area with green c
   <em>Figure 4. Optimal solution for problem p1, green cells indicate the areas that should be conserved</em>
 </div>
 
-<br \>
+<br />
 
-<br \>
+<br />
 
 While it is interesting to see the spatial distribution of the proposed conservation areas, this plot doesn't tell us whether or not we have achieved our objective. The Forest Service might want to know the total cost of this conservation plan and how suitable the areas are for each of the species. It is possible to retrieve this information from the solution and print it in R.
 
