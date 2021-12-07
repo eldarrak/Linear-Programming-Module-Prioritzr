@@ -358,6 +358,8 @@ s2 <- solve(p2)
 The costs of this solution are 2.87 million euros, all the targets are achieved.
 </details>
 
+<br />
+
 **phone rings**, hello? hmm.. yes, what's that? oh OK. <br \>
 The Forestry Service just called, they want to notify us that their expenses for this project are cut by one-third and that only 2 million euros are left for conservation measures. Furthermore, they inform us that the designated _locked_in_ areas are not important anymore, we can select any area that is most optimal for conservation. Try to solve this new scenario, use defined problem _p1_ (without the locked-in constraints) to define problem _p3_, taking the new budget into consideration.
 
@@ -401,7 +403,7 @@ If you would look back at the first solution (figure 4), it is rather clear that
 <br />
 <details>
 <summary>Answer Q13.</summary>
-Many expressions are possible. Here is a few of them: <br />
+Many expressions are possible. Here are a few of them: <br />
   * minimize(preservation area / preservation border) <br />
   * maximize(neighbour connections between preservation areas) <br />
   * Or add a constraint: number of border connections to other preservation areas cannot be less < 2) <br />
@@ -409,7 +411,30 @@ Many expressions are possible. Here is a few of them: <br />
 
 <br />
 
-We can further modify the problem by adding penalties that punish overly fragmented solutions (add_boundary_penalties). Here we will use a penalty factor of 300 (i.e. boundary length modifier; BLM), and an edge factor of 50% so that planning units that occur outer edge of the study area are not overly penalized.
+Since the effects of fragmentation is a common dilemma in conservation ecology, the prioritizR package already contains a parameter which we can use to minimize fragmentation (_add_boundary_penalties_). This parameter adds a penalty that punish overly fragmented solutions. Here we will use a penalty factor of 0.00001 (i.e. boundary length modifier; search this up if you are interested), and an edge factor of 50% so that planning units that occur at the outer edge of the study area are not overly penalized.
 
-This solution is even better then the previous solution. However, we are not finished yet. This solution does not maintain connectivity between reserves, and so species may have limited capacity to disperse throughout the solution. To avoid this, we can add contiguity constraints (add_contiguity_constraints).
+```R
+# create new problem with boundary penalties added to it
+p4 <- p1 %>%
+  add_boundary_penalties(penalty = 0.00001, edge_factor = 0.5)
+```
 
+<br />
+
+This solution looks better than the first solution when considering fragmentation. However, this solution does not maintain connectivity between reserves, and so species may have limited capacity to disperse throughout the solution. To avoid this, we can add a contiguity constraints (_add_contiguity_constraints_) that enforces the solution to have all preservation areas connected to each other. The areas are connected when each preserved area is located in one of the 8 cells around another preserved area. Use the code below and visualize the solution again.
+
+```R
+# create new problem with contiguity constraints
+p5 <- p1 %>%
+  add_contiguity_constraints()
+```
+
+<br />
+
+Well done! You have used linear programming in R to solve multiple conservation problems using different objectives and constraints; a task that would be quite impossible to do by hand, especially when area or resolution scales up.
+
+_You gained 1 level up in conservation ecology._
+
+<br />
+
+<p align="center">(<a href="#top">back to top</a>)</p>
