@@ -30,12 +30,13 @@
     </li>
     <li>
       <a href="#Problem">Defining the problem</a>
+    </li>
+    <li>
+      <a href="#Cons Pros">Constraints & Objectives</a>      
       <ul>
-        <li><a href="#prerequisites">Prerequisites</a></li>
-        <li><a href="#installation">Installation</a></li>
+        <li><a href="#Fragmentation">Fragmentation</a></li>
       </ul>
     </li>
-    <li><a href="#usage">Usage</a></li>
   </ol>
 </details>
 
@@ -360,7 +361,7 @@ The costs of this solution are 2.87 million euros, all the targets are achieved.
 
 <br />
 
-**phone rings**, hello? hmm.. yes, what's that? oh OK. <br \>
+**phone rings**, hello? hmm.. yes, what's that? oh OK. <br />
 The Forestry Service just called, they want to notify us that their expenses for this project are cut by one-third and that only 2 million euros are left for conservation measures. Furthermore, they inform us that the designated _locked_in_ areas are not important anymore, we can select any area that is most optimal for conservation. Try to solve this new scenario, use defined problem _p1_ (without the locked-in constraints) to define problem _p3_, taking the new budget into consideration.
 
 ```R
