@@ -52,22 +52,12 @@ In this section, we are going to explore step by step how linear programming (LP
 > Question 1. What might be a limiting factor for preservation? I.e. What could be a reason that we cannot preserve the whole forest?
 
 <br />
-<details>
-<summary>Answer Q1.</summary>
-There can be many limiting factors. Often there is money involved and the conservation costs are too high. However, there may be other reasons, such as: The entire forest cannot be managed and patrolled, or preservation could mean the preserved area would be fenced off and the government decided that at least X% of the forest should be remain open to the public. 
-</details>
 
-<br />
 
 > Question 2. What kind of data (variables) would you like to know about each grid cell of forest to determine if it should be preserved or not? Name three different types of variables.
 
 <br />
-<details>
-<summary>Answer Q2.</summary>
-Depending on your LP problem, numerous types of variables can be of interest. In the case of this forest preservation task some examples can be: The number of trees in a grid cell (quantity), the number of endangered species present (quality), the (geo)diversity in the abiotic environment, the cost of protecting the 1km<sup>2</sup>, the distance to disturbances such as roads, the nutrient & water availability etc.
-</details>
 
-<br />
 
 Now that we have a basic understanding of the data we could use to reach our objective of preserving the maximum amount of biodiversity and possible constraints that limit our options, we can check how our conservation task would look in real life. In order to do so, we will make use of data that is already available in the PrioritizR package. Therefore, fire up Rstudio and load the PrioritizR library, now that we are at it, also load the Gurobi library which we will use to solve our LP problem later on.
 
@@ -127,12 +117,6 @@ forest_cost <- sim_pu_polygons@data
 > Question 3. What is the costs of the most expensive km<sup>2</sup> of forest? Mind the unit of measurement!
 
 <br />
-<details>
-<summary>Answer Q3.</summary>
-Using the function summary(forest_cost) for example, one can find that the maximum cost is €215900.
-</details>
-
-<br />
 
 As you can see in the new _forest cost_ variable, there are also two other columns in the data; _locked_in_ and _locked_out_. The locked_in column describes whether a grid cell needs to be protected or not (due to other reasons outside the scope of our objective). The locked_out column details whether a grid cell can be preserved at all, maybe there is a train track crossing the forest, which makes it impossible to protect the grid cells within which it lies. Now visualize the locked_in data similarly as how you visualized the purchase costs earlier, copy the code and change the necessary parts accordingly.
 
@@ -141,12 +125,7 @@ As you can see in the new _forest cost_ variable, there are also two other colum
 > Question 4. How many grid cells are already designated to be conserved?
 
 <br />
-<details>
-<summary>Answer Q4.</summary>
-If you count the colored cells in the visualized "locked-in" variable, one can find that the answer is 10.
-</details>
 
-<br />
 <br />
 
 <!-- Feature -->
@@ -171,12 +150,7 @@ sim_features@layers
 > Question 5. Which layer contains the highest suitability value?
 
 <br />
-<details>
-<summary>Answer Q5.</summary>
-The first layer contains the highest value (0.93) of the five layers.
-</details>
 
-<br />
 
 Similarly as the cost data, the suitability layers contain spatial information (i.e. spatial extent, coordinate system and resolution) which we can use to plot the suitability maps and investigate their spatial differences. As you can imagine, the most optimal square kilometer of forest to conserve is the cell that contains the highest suitability values for each of the five species. It is possible to plot all the five suitability layers at the same time using the following code:
 
@@ -195,12 +169,7 @@ plot(sim_features, main = paste("Suitability map", c("first", "second", "third",
 > d) The southwestern part <br />
 
 <br />
-<details>
-<summary>Answer Q6.</summary>
-Answer A. The northwestern part is inefficient to preserve.
-</details>
 
-<br />
 
 > Question 7. Why this area? <br />
 > <br />
@@ -209,12 +178,7 @@ Answer A. The northwestern part is inefficient to preserve.
 > c) Both _a_ and _b_ are correct. <br />
 
 <br />
-<details>
-<summary>Answer Q7.</summary>
-Answer C. The area has the highest cost (the maximum amount of €215900) and also three of the features are highly unsuitable.
-</details>
 
-<br />
 
 <!-- Problem -->
 ## Defining the problem
@@ -224,10 +188,7 @@ Maybe you noticed when looking at the suitability maps and data, that the ranges
 > Question 8. How would you define the objective such that all species are included?
 
 <br />
-<details>
-<summary>Answer Q8.</summary>
-Various objectives are possible. Examples are: Maximize(species/total of that species) or preserve at least n amount of each species.
-</details>
+
 
 One way to deal with this dilemma is to set relative targets for each of the species. For instance, we can define a target that at least 15% of the total suitability for each species should be conserved. While we aim to reach this target, we are still constrained by the amount of money that we can spend on conservation. Earlier you saw that the cells costs are in thousands of euros. Let's assume that the Forestry Service that commissioned this task has 3 million euros to spend on conservation; any cell can be bought, as long as the total spending is less than 3 million. Therefore the objective is to preserve as much suitability relative for each species that 3 million euro's can buy. It is interesting to note that the size of the area doesn't matter in this objective, as long as >15% suitability / species is preserved, the objective is reached. Therefore this objective focuses on quality over quantity.
 
@@ -322,12 +283,7 @@ The first print statement shows the total cost of this optimal solution, this pr
 > e) Fifth species <br />
 
 <br />
-<details>
-<summary>Answer Q9.</summary>
-Answer D. The fourth species has achieved most of its relative target, a total of 16.8% (0.168) of the total suitability for this species in the study area is preserved in this solution. Note that the percentages for each of the species differ only slightly. Because you have set relative targets, each species is as important to preserve as the other.
-</details>
 
-<br />
 
 <br />
 
@@ -354,12 +310,7 @@ s2 <- solve(p2)
 > Question 10. What are the costs of the solution where the already designated areas to be conserved are included? Are all the relative targets reached?
 
 <br />
-<details>
-<summary>Answer Q10.</summary>
-The costs of this solution are 2.87 million euros, all the targets are achieved.
-</details>
 
-<br />
 
 **phone rings**, hello? hmm.. yes, what's that? oh OK. <br />
 The Forestry Service just called, they want to notify us that their expenses for this project are cut by one-third and that only 2 million euros are left for conservation measures. Furthermore, they inform us that the designated _locked_in_ areas are not important anymore, we can select any area that is most optimal for conservation. Try to solve this new scenario, use defined problem _p1_ (without the locked-in constraints) to define problem _p3_, taking the new budget into consideration.
@@ -374,12 +325,7 @@ p3 <- p1 %>% what_comes_here(questionmark)
 > Question 11. How many square kilometers of forest are proposed for conservation with the limited budget?
 
 <br />
-<details>
-<summary>Answer Q11.</summary>
-Ten square kilometers (10 cells are green in the plot, each cell is 1km<sup>2</sup>).
-</details>
 
-<br />
 
 Now print the costs and targets of this solution like you did earlier, then take a look at the summary statistics of the optimal solution for this problem. It seems that due to our limited budget, we are not able to achieve the targets we have set. Since the budget is not sufficient, this solution is the best we can do for this amount of money.
 
@@ -388,12 +334,7 @@ Now print the costs and targets of this solution like you did earlier, then take
 > Question 12. What is the average percentage of suitability achieved for the five species?
 
 <br />
-<details>
-<summary>Answer Q12.</summary>
-On average the preserved suitability of the species is 11.5% ((0.12 + 0.11 + 0.113 + 0.113 + 0.119) / 5), 3.5% short of our target.
-</details>
 
-<br />
 
 ### Fragmentation
 
@@ -402,15 +343,7 @@ If you would look back at the first solution (figure 4), it is rather clear that
 > Question 13. How would you reduce fragmentation? Provide a (mathematical) expression that would limit the amount of fragmentation. It helps to think of an equation you want to maximize or minimize.
 
 <br />
-<details>
-<summary>Answer Q13.</summary>
-Many expressions are possible. Here are a few of them: <br />
-  * minimize(preservation area / preservation border) <br />
-  * maximize(neighbour connections between preservation areas) <br />
-  * Or add a constraint: number of border connections to other preservation areas cannot be less < 2) <br />
-</details>
 
-<br />
 
 Since the effects of fragmentation is a common dilemma in conservation ecology, the prioritizR package already contains a parameter which we can use to minimize fragmentation (_add_boundary_penalties_). This parameter adds a penalty that punish overly fragmented solutions. Here we will use a penalty factor of 0.00001 (i.e. boundary length modifier; search this up if you are interested), and an edge factor of 50% so that planning units that occur at the outer edge of the study area are not overly penalized.
 
