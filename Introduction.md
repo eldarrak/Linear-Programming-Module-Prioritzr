@@ -89,12 +89,12 @@ If you are not able to succesfully install the software, then a more elaborate i
 
 ### Installation
 
-Once the software is installed on your laptop, the Gurobi package can be installed in Rstudio. Use the following code to install the latest version of the Gurobi software which is 9.5.0. to this date (**19/11/21**). You are probably prompted to also install dependencies like the package _slam_ in order to make the Gurobi package work, also install this package with the provided code.
+Once the software is installed on your laptop, the Gurobi package can be installed in Rstudio. Use the following code to install the latest version of the Gurobi software which is 10.0.0. to this date (**10/12/22**). You are probably prompted to also install dependencies like the package _slam_ in order to make the Gurobi package work, also install this package with the provided code.
 
 
 ```R
-# Install Gurobi950
-install.packages("c:/gurobi950/win64/R/gurobi_9.5-0.zip", repos = NULL)
+# Install Gurobi1000
+install.packages("c:/gurobi100/win64/R/gurobi_10.0-0.zip", repos = NULL)
 
 # Install additionals
 install.packages("slam", repos = "https://cloud.r-project.org")
