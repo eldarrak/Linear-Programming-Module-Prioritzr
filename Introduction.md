@@ -94,7 +94,7 @@ Once the software is installed on your laptop, the Gurobi package can be install
 
 ```R
 # Install Gurobi1000
-install.packages("c:/gurobi100/win64/R/gurobi_10.0-0.zip", repos = NULL)
+install.packages("c:/gurobi1000/win64/R/gurobi_10.0-0.zip", repos = NULL)
 
 # Install additionals
 install.packages("slam", repos = "https://cloud.r-project.org")
